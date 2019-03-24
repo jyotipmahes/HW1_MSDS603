@@ -3,6 +3,10 @@ from os.path import expanduser
 from user_definition import *
 
 
+git_repo_name = "HW1_MSDS603"
+git_user_id = "jyotipmahes"
+
+
 # ## Assumption : Anaconda, Git (configured)
 
 def ssh_client():
