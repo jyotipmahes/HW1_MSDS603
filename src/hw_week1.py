@@ -35,9 +35,10 @@ def git_clone(ssh):
                             git_user_id + "/" + git_repo_name + ".git"
         stdin, stdout, stderr = ssh.exec_command(git_clone_command)
         if (b'already exists' in stderr.read()):
-            git_clone_command = "git pull origin master"
-            stdin, stdout, stderr = ssh.exec_command(git_clone_command)
-
+            path_change = "cd /home/ec2-user/"+git_repo_name+"/"
+            git_pull_command = "git pull origin master"
+            stdin, stdout, stderr = ssh.exec_command(path_change +
+                                                     ";" + git_pull_command)
 
 
 def main():
@@ -45,7 +46,6 @@ def main():
     ssh_connection(ssh, ec2_address, user, key_file)
     git_clone(ssh)
     create_or_update_environment(ssh)
-#     git_clone(ssh)
 
 
 if __name__ == '__main__':
